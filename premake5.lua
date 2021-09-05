@@ -11,7 +11,7 @@ project "bezier"
 
 	files { "source/**.hpp", "source/**.cpp" }
 
-	links { "SDL2" }
+	links { "SDL2", "SDL2_image" }
 
 	filter { "configurations:debug" }
 		symbols "On"

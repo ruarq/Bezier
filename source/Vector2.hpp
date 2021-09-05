@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+#include <ostream>
 
 template<typename T>
 class Vector2 final
@@ -24,6 +25,11 @@ public:
 		return x * x + y * y;
 	}
 
+	Vector2<T> Norm() const
+	{
+		return Vector2<T>(x / this->Length(), y / this->Length());
+	}
+
 public:
 	T x, y;
 };
@@ -38,6 +44,12 @@ template<typename T>
 Vector2<T> operator-(const Vector2<T> &a, const Vector2<T> &b)
 {
 	return Vector2<T>(a.x - b.x, a.y - b.y);
+}
+
+template<typename T>
+Vector2<T> operator*(const Vector2<T> &a, const Vector2<T> &b)
+{
+	return Vector2<T>(a.x * b.x, a.y * b.y);
 }
 
 template<typename T, typename U>
@@ -62,6 +74,13 @@ template<typename T>
 T Distance(const Vector2<T> &a, const Vector2<T> &b)
 {
 	return std::sqrt(Distance2(a, b));
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream &out, const Vector2<T> &v)
+{
+	out << "(" << v.x << "," << v.y << ")";
+	return out;
 }
 
 using v2 = Vector2<float>;
